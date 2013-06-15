@@ -16,10 +16,10 @@ var plugin= new function () {
     }
     this.getData = function(onCompleted) {
         onCompleted({
-            text: 'text representation of data',
+            text: 'Привет, я тестовый слайд, и я умею говорить',
             data: {
-                title: 'TEST plugin test',
-                html: 'TEST <h1>plugin</h1> test'
+                title: 'Алоха!',
+                html: 'Я первый тестовый слайд'
             }
         });
     }

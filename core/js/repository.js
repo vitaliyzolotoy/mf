@@ -21,7 +21,7 @@
         if (!item) {
             item = { 
                 useVoice: false,
-                enabledPlugins: ['calendar']//, 'rss', 'test']
+                enabledPlugins: ['test', 'rss', 'calendar']
             };
         }
         return item;

@@ -8,7 +8,7 @@
     function validatePlugin(plugin) {
         var isValid = true;
         if (!isValid) {
-            throw 'invalidate plugin';
+            throw new Error('invalidate plugin');
         }
     }
 
@@ -148,14 +148,15 @@
                     plugin.init(pluginDataStorage, globalSettings);
                     //get plugin data object
                     plugin.getData(function (data) {
-                        if (useVoice) {
-                            displayPluginContent(data.data);
+                        displayPluginContent(data.data);
+                        if (data.text)
+                        {
                             _ctx.utils.speech(data.text, function () {
                                 onExecuted();
                             });
                         }
-                        else {
-                            displayPluginContent(data.data);
+                        else
+                        {
                             window.setTimeout(function () {
                                 onExecuted();
                             }, _settings.commonSettings.pluginDisplayTime * 1000);
@@ -194,7 +195,7 @@
             }
         },
         speech: function (text, onCompleted) {
-            onCompleted();
+            TextToSpeach(text, onCompleted);
         }
     }
     this.UI = new function () {
@@ -217,7 +218,7 @@
 	               //      ready: function () {
 	               //          $("#playerContainer").jPlayer("play");
 	               //      },
-                //         ended: function() {  
+                //         ended: function() {
                 //              onCompleted();
                 //         },
 	               //  });
