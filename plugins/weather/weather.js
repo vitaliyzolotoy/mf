@@ -7,12 +7,12 @@ var plugin = new function () {
         console.log('weather init');
     };
 
-    this.getReadableName = function () {
-        return 'Погода';
-    };
-
     this.getName = function () {
         return 'weather';
+    };
+
+    this.getReadableName = function () {
+        return 'Погода';
     };
 
     this.getData = function(ready) {
