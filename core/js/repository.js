@@ -41,7 +41,7 @@
             var t = new Date();
             var wakeupTime = new Date(t.setSeconds(t.getSeconds() + 3));
             item = { 
-                enableAlarm: true,
+                enableAlarm: false,
                 wakeupTime: wakeupTime,
                 playMusic: true,
                 wakeupMusicSource: "sun.mp3",
