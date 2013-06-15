@@ -37,6 +37,26 @@ body
     background-repeat: no-repeat;
 }
 
+.morning-friend_type_horoscope .morning-friend__inner
+{
+    background-color: #A6033F;
+}
+
+.morning-friend_type_weather .morning-friend__inner
+{
+    background-color: #FFBF53;
+}
+
+.morning-friend_type_calendar .morning-friend__inner
+{
+    background-color: #D9304F;
+}
+
+.morning-friend_type_rss .morning-friend__inner
+{
+    background-color: #4C944B;
+}
+
 .morning-friend__body
 {
     height: 368px;
