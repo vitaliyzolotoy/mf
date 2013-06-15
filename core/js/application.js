@@ -88,15 +88,17 @@
             }
             function playMusic(music, onCompleted) {
                 if (music) {
-                    console.log(music);
+                    // console.log(music);
+                    var currentHours = new Date().getHours();
+                    var currentMinutes = new Date().getMinutes();
                     var $alarmContentWrapper = $('<div class="alarm" />');
-                    var $alarmDateLabel = $('<div class="alarm__date" />');
-                    var $alarmTimeLabel = $('<span class="alarm__timer" />');
+                    var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
+                    var $alarmTimeLabel = $('<div class="alarm__timer">'+currentHours+':'+currentMinutes+'</div>');
                     var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
                     $alarmButtonStop.click(function(){
                         _ctx.UI.audioPlayer.stop();
                         onCompleted();
-                        console.log('clicked stop');
+                        // console.log('clicked stop');
                     });
                     var $alarmButtonYet = $('<button class="button">Еще 5 минут :-)</button>');
                     $alarmButtonYet.click(function(){
@@ -106,7 +108,7 @@
                         var wakeupTimeMore = new Date(t.setSeconds(t.getSeconds() + 5));
 
                         displayTimeCounter(wakeupTimeMore, onCounterCompleted);
-                        console.log('clicked more');
+                        // console.log('clicked more');
                     });
                     $alarmContentWrapper.append($alarmDateLabel).append($alarmTimeLabel).append($alarmButtonStop).append($alarmButtonYet);
                     $contentWrapper.html($alarmContentWrapper);
@@ -168,11 +170,11 @@
                 function displayPluginContent($pluginContent, data, readableName, text) {
                     setAppTitle(readableName);
                     function speech() {
-                        console.log('useVoice = ', useVoice, data, text);
+                        // console.log('useVoice = ', useVoice, data, text);
                         if (text && useVoice) {
-                            console.log('before');
+                            // console.log('before');
                             _ctx.utils.speech(text, function () {
-                                console.log('in voice');
+                                // console.log('in voice');
                                 onExecuted();
                             });
                         }
