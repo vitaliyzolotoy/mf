@@ -1,20 +1,31 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
 .morning-friend
 {
-    padding: 152px 36px 114px 36px;
-    background-image: url('../images/iphone5.png');
-    background-repeat: no-repeat;
-    width: 317px;
-    height: 463px;
-    margin: auto;
-    overflow: hidden;
+    position: relative;
     
+    width: 330px;
+    height: 657px;
+    margin: 20px auto;
+
+    background: url('../images/morning-friend.png');
     background-size: cover;
 }
 .morning-friend-inner
 {
-    height: 460px;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    padding: 95px 35px;
 }
+
 .morning-friend-inner .top-actions
 {
     padding: 3px;
@@ -30,6 +41,7 @@
 {
     height: 401px;
 }
+
 a.button
 {
     background-repeat: no-repeat;
