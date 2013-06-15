@@ -11,7 +11,7 @@
             item = {
             language: 'ru',
                 pluginDisplayTime: 3,
-                recycle: false
+                recycle: true
             };
         }
         return item;
@@ -21,7 +21,8 @@
         if (!item) {
             item = { 
                 useVoice: false,
-                enabledPlugins: ['weather', 'calendar', 'horoscope', 'rss', 'test']
+                enabledPlugins: ['test', 'test2']
+                //enabledPlugins: ['weather', 'calendar', 'horoscope', 'rss', 'test']
             };
         }
         return item;

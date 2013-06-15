@@ -19,12 +19,12 @@
     <script src="plugins/weather/weather.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            ApplicationContext.applicationStart();
+            // ApplicationContext.applicationStart();
         });
     </script>
 </head>
 <body>
-    <div class="morning-friend">
+    <div class="morning-friend morning-friend_type_alarm">
         <div class="morning-friend__inner">
             <div class="morning-friend__head">
                 <div class="actions">
@@ -34,17 +34,29 @@
                 </div>
             </div>
             <div class="morning-friend__body">
-                <div class="widget widget_type_alarm">
-
-
-                    <div class="alarm">
-                        <div class="alarm__date">Воскресенье, 16 июня</div>
-                        <div class="alarm__timer">08:01</div>
-                        <button class="button button_type_stop">Остановить</button>
-                        <button class="button">еще 5 мин :)</button>
-                        
+                <div class="plugins-container">
+                    <div class="plugins-container__inner">
+                        <div class="plugin-content plugin-content_type_alarm">
+                            <div class="alarm">
+                                <div class="alarm__date">Воскресенье, 16 июня</div>
+                                <div class="alarm__timer">08:01</div>
+                                <button class="button button_type_stop">Остановить</button>
+                                <button class="button">еще 5 мин :)</button>
+                            </div>
+                        </div>
+                        <div class="plugin-content plugin-content_type_horoscope">
+                        horoscope
+                        </div>
+                        <div class="plugin-content plugin-content_type_weather">
+                        weather
+                        </div>
+                        <div class="plugin-content plugin-content_type_calendar">
+                        calendar
+                        </div>
+                        <div class="plugin-content plugin-content_type_rss">
+                        rss
+                        </div>
                     </div>
-                
                 </div>
             </div>
             <div class="morning-friend__foot">
