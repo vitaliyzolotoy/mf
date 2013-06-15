@@ -1,51 +1,31 @@
-$(function(){
-    $.get('http://feeds.feedburner.com/americhka/oBlg', function(data){
-        $(data).find('item').each(function(key, item){
-            console.log($(item).find('title:first').text());
-        });
-    });
-});
-//
+var plugin = new function () {
 
-var plugin= new function () {
-    var self = this;
-    var _pluginSettingsStorage, _globalSettings;
-    this.init = function(pluginSettingsStorage, globalSettings) {
-        _pluginSettingsStorage = pluginSettingsStorage;
-        _globalSettings = globalSettings;
-    }
+    this.init = function(){
+        console.log('initiating...');
+    },
+
     this.getName = function() {
         return 'rss';
-    }
-    this.getSettingsForm = function(pluginSettingsStorage, globalSettings) {
-        //get settings object from storage
-        var settings =  _pluginSettingsStorage.getSettings();
-        return '<form></form>';
-    }
-    this.getData = function(onCompleted) {
-        var text = '<ul>';
+    },
+
+    this.getData = function(ready) {
+        var feeds = [];
         $(function(){
             $.get('http://feeds.feedburner.com/americhka/oBlg', function(data){
                 $(data).find('item').each(function(key, item){
-                    text += '<li>'+$(item).find('title:first').text()+'</li>';
+                    feeds.push($(item).find('title:first').text());
                 });
-                text += '</ul>';
 
-                    onCompleted({
-                    text: text,
+                ready({
+                    text: feeds.join(', '),
                     data: {
-                        title: 'Feeds',
-                        html: text
+                        title: 'Recent Feeds',
+                        html: '<ul><li>'+feeds.join('</li><li>')+'</li></ul>'
                     }
                 });
             });
         });
     }
-    this.submitInitialization = function(pluginSettingsStorage, globalSettings) {
-        //get settings object from form
-        var settings = {};
-        _pluginSettingsStorage.setSettings(settings);
-    }
+};
 
-}
 ApplicationContext.initPlugin(plugin);
