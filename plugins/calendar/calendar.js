@@ -1,47 +1,44 @@
-function insertAgenda(events) {
-    console.log();
-    $(events.feed.entry).each(function(key, event){
-        console.log(event.title.$t);
-    });
+// Global function needed to proccess loaded events
+function morningFriendInsertAgenda(events) {
+    calendar.processData(events);
 }
-$(function(){
 
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.src = "http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=insertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true";
-    $("head").append(s);
-    // alert('Calendar');
-});
+var calendar = new function () {
 
-
-var plugin = new function () {
+    var self = this;
 
     this.init = function(){
-        console.log('initiating...');
+        // load calendar events with including script
+        $(function(){
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=morningFriendInsertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true';
+            $('head').append(script);
+        });
     },
 
-        this.getName = function() {
-            return 'calendar';
-        },
+    this.getName = function() {
+        return 'calendar';
+    },
 
-        this.getData = function(ready) {
-            var feeds = [];
-            $(function(){
-                $.get('http://feeds.feedburner.com/americhka/oBlg', function(data){
-                    $(data).find('item').each(function(key, item){
-                        feeds.push($(item).find('title:first').text());
-                    });
+    this.processData = function(response){
+        var events = [];
+        $(response.feed.entry).each(function(key, event) {
+            events.push(event.title.$t)
+        });
 
-                    ready({
-                        text: feeds.join(', '),
-                        data: {
-                            title: 'Recent Feeds',
-                            html: '<ul><li>'+feeds.join('</li><li>')+'</li></ul>'
-                        }
-                    });
-                });
-            });
-        }
+        self.ready({
+            text: events.join(', '),
+            data: {
+                title: 'Recent Feeds',
+                html: '<ul><li>'+events.join('</li><li>')+'</li></ul>'
+            }
+        });
+    },
+
+    this.getData = function(ready) {
+        self.ready = ready;
+    }
 };
 
-ApplicationContext.initPlugin(plugin);
+ApplicationContext.initPlugin(calendar);
