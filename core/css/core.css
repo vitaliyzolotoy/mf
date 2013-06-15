@@ -1,7 +1,11 @@
 body
 {
+    font-family: Helvetica, Arial, "Lucida Grande", sans-serif; 
+
     margin: 0;
     padding: 0;
+    
+    color: #f2f2f2;
 }
 
 .morning-friend
@@ -50,6 +54,14 @@ body
     
     line-height: 40px;
     text-align: center;
+}
+
+.actions__title
+{
+    display: inline-block;
+
+    line-height: 47px;
+    text-transform: uppercase;
 }
 
 .actions_type_bottom
@@ -104,6 +116,6 @@ body
     
     line-height: 35px !important;
     color: #7a8496;
-    text-shadow: 0 0 2px #000;
+    /*text-shadow: 0 0 2px #000;*/
 }
 

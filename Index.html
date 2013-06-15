@@ -18,7 +18,7 @@
     <script src="plugins/horoscope/horoscope.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            // ApplicationContext.applicationStart();
+            ApplicationContext.applicationStart();
         });
     </script>
 </head>
@@ -28,11 +28,21 @@
             <div class="morning-friend__head">
                 <div class="actions">
                     <span class="actions__left"><i class="icon-wrap"><i class="icon icon-pause"></i></i></span>
+                    <span class="actions__title">Будильник</span>
                     <span class="actions__right"><i class="icon-wrap"><i class="icon icon-cogs"></i></i></span>
                 </div>
             </div>
             <div class="morning-friend__body">
-                morning-friend__body
+                <div class="widget widget_type_alarm">
+                    <div class="alarm">
+                        <div class="alarm__date">Воскресенье, 16 июня</div>
+                        <div class="alarm__timer">08:01:01</div>
+                        <div class="alarm__wakeup">Остановить</div>
+                        <div class="alarm__wakeup">Ещё 5 минут...</div>
+                        
+                    </div>
+                
+                </div>
             </div>
             <div class="morning-friend__foot">
                 <div class="actions actions_type_bottom">
