@@ -1,15 +1,20 @@
 
 var plugin = new function () {
 
+<<<<<<< HEAD
     var self = this;
 
     this.init = function(){
+=======
+    this.init = function () {
+>>>>>>> 7be9a57181e5aada29a1d88379d7e62a96c0dc8b
         console.log('weather init');
     };
 
-    this.getName = function() {
-       return 'weather';
+    this.getName = function () {
+        return 'weather';
     };
+<<<<<<< HEAD
 
     this.getData = function(ready) {
 
@@ -61,6 +66,18 @@ var plugin = new function () {
             success: function(data) { translated = data.text[0]; },
             data: {},
             async: false
+=======
+    this.getReadableName = function () {
+        return 'Погода';
+    };
+    this.getData = function (ready) {
+        ready({
+            text: ['Погода в Одессе', 'Солнечно'],
+            data: {
+                title: 'Гороскоп',
+                html: 'HTML'
+            }
+>>>>>>> 7be9a57181e5aada29a1d88379d7e62a96c0dc8b
         });
         return translated;
     };

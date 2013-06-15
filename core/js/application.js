@@ -25,14 +25,19 @@
         _settings.commonSettings = repository.getCommonSettings();
 
         //init ui handlers
-        var $contentWrapper = $('.morning-friend-inner .content-wrapper');
+        var $mainWrapper = $('.morningFriend');
+        var $contentWrapper = $('.morning-friend__body');
         var $soundActionButton = $('.soundAction');
         var $settingActionButton = $('.settingAction');
-
+        var $appTitle = $('.actions__title');
         //start application
 
         //---Alarm
+        function setAppTitle(text) {
+            $appTitle.text(text);
+        }
         function executeAlarm() {
+            setAppTitle('Будильник');
             function displayTimeCounter(targetDate, onCompleted) {
                 function displayTimeCounterStep() {
                     function displayTimeItem(item, $container) {
@@ -71,7 +76,7 @@
             }
             function playMusic(music, onCompleted) {
                 if (music) {
-                    _ctx.UI.audioPlayer.play(music, $contentWrapper, onCompleted);
+                    _ctx.UI.audioPlayer.play(music, onCompleted);
                 }
             }
 
@@ -99,9 +104,15 @@
         }
         //---Plugins
         function executePlugins() {
-            //private variables
+            //private variables 
             var currentIndex = 0;
             var pluginData = _settings.pluginSettings;
+            var $pluginsContainerWrapper = $('<div class="plugins-container"></div>');
+            var $pluginsContainer = $('<div class="plugins-container__inner"></div>');
+            $pluginsContainerWrapper.append($pluginsContainer);
+            var cachedPluginContents = [];
+            var $currentPluginContent;
+            $contentWrapper.html($pluginsContainerWrapper);
             //private functions 
             function executePluginByIndex(index) {
                 if (index < enabled.length) {
@@ -117,54 +128,89 @@
                 }
             }
             function executePlugin(pluginName, useVoice, onExecuted) {
-                function displayPluginContent(pluginData) {
+                $mainWrapper.attr('id', pluginName);
+
+                function executePluginContent(pluginData, readableName) {
                     var $pluginContentWrapper = $('<div class="plugin-content"></div>');
                     var $pluginContentTitle = $('<div class="plugin-content"></div>');
                     var $pluginContent = $('<div class="plugin-content"></div>');
                     $pluginContentWrapper.append($pluginContentTitle).append($pluginContent);
-                    if (pluginData.background) {
-                        $pluginContentWrapper.css(pluginData.background);
-                    }
                     $pluginContentTitle.text(pluginData.title);
                     $pluginContent.html(pluginData.html);
-                    $contentWrapper.html($pluginContentWrapper);
+                    cachedPluginContents.push({ title: pluginName, readableName: readableName, $content: $pluginContentWrapper, data: pluginData });
+                    displayPluginContent($pluginContentWrapper, pluginData, readableName);
                 }
-                var plugin = _ctx.utils.findPluginByName(pluginName);
-                if (plugin) {
-                    //init plugins storage
-                    var pluginDataStorage = {
-                        getSettings: function () {
-                            return repository.getPluginSettings(pluginName)
-                        },
-                        setSettings: function (json) {
-                            return repository.setPluginSettings(pluginName, json);
-                        }
-                    };
-                    //init global settings
-                    var globalSettings = {
-                        language: _settings.commonSettings.language
-                    };
-                    //init plugin
-                    plugin.init(pluginDataStorage, globalSettings);
-                    //get plugin data object
-                    plugin.getData(function (data) {
-                        displayPluginContent(data.data);
-                        if (data.text)
-                        {
+                function displayPluginContent($pluginContent, data, readableName) {
+                    setAppTitle(readableName);
+                    function speech() {
+                        if (data.text && useVoice) {
                             _ctx.utils.speech(data.text, function () {
                                 onExecuted();
                             });
                         }
-                        else
-                        {
+                        else {
                             window.setTimeout(function () {
                                 onExecuted();
-                            }, _settings.commonSettings.pluginDisplayTime * 1000);
+                            }, 2000);
                         }
-                    });
+                    }
+
+                    if (!$currentPluginContent) {
+                        $pluginsContainer.append($pluginContent);
+                        $currentPluginContent = $pluginContent;
+                        speech();
+                    }
+                    else {
+                        $pluginsContainer.append($pluginContent.css('margin-left', '263px'));
+                        $currentPluginContent.animate({ 'margin-left': '-263px' }, 500, function () {
+                            $currentPluginContent.remove();
+                        });
+                        $pluginContent.animate({ 'margin-left': '0px' }, 500, function () {
+                            $currentPluginContent = $pluginContent;
+                            speech();
+                        });
+                    }
+                }
+                function getCachedContent(pluginName) {
+                    for (var i = 0; i < cachedPluginContents.length; i++) {
+                        if (pluginName == cachedPluginContents[i].title) {
+                            return cachedPluginContents[i];
+                        }
+                    }
+                }
+                var pluginContent = getCachedContent(pluginName);
+                if (pluginContent) {
+
+                    displayPluginContent(pluginContent.$content, pluginContent.data, pluginContent.readableName);
                 }
                 else {
-                    onExecuted();
+                    var plugin = _ctx.utils.findPluginByName(pluginName);
+                    if (plugin) {
+
+                        //init plugins storage
+                        var pluginDataStorage = {
+                            getSettings: function () {
+                                return repository.getPluginSettings(pluginName)
+                            },
+                            setSettings: function (json) {
+                                return repository.setPluginSettings(pluginName, json);
+                            }
+                        };
+                        //init global settings
+                        var globalSettings = {
+                            language: _settings.commonSettings.language
+                        };
+                        //init plugin
+                        plugin.init(pluginDataStorage, globalSettings);
+                        //get plugin data object
+                        plugin.getData(function (data) {
+
+                            executePluginContent(data.data, plugin.getReadableName());
+                        });
+                    }
+                    else {
+                        onExecuted();
+                    }
                 }
             }
 
@@ -200,31 +246,19 @@
     }
     this.UI = new function () {
         this.audioPlayer = new function () {
-            this.play = function (source, $wrapper, onCompleted) {
-                // var $playerWrapper = $('<div class="player-wrapper" />');
-                // var $player = $('<div id="player" class="cp-jplayer"></div>');
-                // var $playerContainer = $('.player-container-template').clone().attr('id', 'playerContainer');
-                // $playerWrapper.append($player).append($playerContainer);
-                // $wrapper.html($playerWrapper);
-                // var player = new CirclePlayer("#player",
-	               //  {
-	               //      mp3: source
-	               //  }, {
-	               //      supplied: "mp3",
-	               //      cssSelectorAncestor: "#playerContainer",
-	               //      swfPath: "Content",
-	               //      wmode: "window",
-	               //      keyEnabled: true,
-	               //      ready: function () {
-	               //          $("#playerContainer").jPlayer("play");
-	               //      },
-                //         ended: function() {
-                //              onCompleted();
-                //         },
-	               //  });
-
+            var _currentPlayer = "";
+            this.play = function (source, onCompleted) {
                 onCompleted();
+            }
+            this.pause = function () {
+                if (_currentPlayer) {
 
+                }
+            }
+            this.stop = function () {
+                if (_currentPlayer) {
+
+                }
             }
         }
     }

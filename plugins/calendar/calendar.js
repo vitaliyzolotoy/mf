@@ -22,7 +22,9 @@ var calendar = new function () {
     this.getName = function() {
         return 'calendar';
     },
-
+    this.getReadableName = function () {
+        return 'Календарь';
+    },
     this.processData = function(response){
         var events = [];
         $(response.feed.entry).each(function(key, event) {

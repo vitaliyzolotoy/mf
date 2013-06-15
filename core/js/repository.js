@@ -11,7 +11,7 @@
             item = {
             language: 'ru',
                 pluginDisplayTime: 3,
-                recycle: false
+                recycle: true
             };
         }
         return item;
@@ -21,7 +21,8 @@
         if (!item) {
             item = { 
                 useVoice: false,
-                enabledPlugins: ['weather', 'calendar', 'horoscope', 'rss', 'test']
+                enabledPlugins: ['test', 'test2']
+                //enabledPlugins: ['weather', 'calendar', 'horoscope', 'rss', 'test']
             };
         }
         return item;
@@ -40,7 +41,7 @@
             var t = new Date();
             var wakeupTime = new Date(t.setSeconds(t.getSeconds() + 3));
             item = { 
-                enableAlarm: true,
+                enableAlarm: false,
                 wakeupTime: wakeupTime,
                 playMusic: true,
                 wakeupMusicSource: "sun.mp3",
