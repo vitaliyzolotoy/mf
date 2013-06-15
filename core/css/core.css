@@ -34,13 +34,13 @@ body
 
 .actions
 {
-    font-size: 25px;
+    font-size: 20px;
     
     display: table;
 
     width: 100%;
     
-    line-height: 40;
+    line-height: 40px;
     text-align: center;
 }
 
@@ -55,9 +55,9 @@ body
 {
     display: inline-block;
     
-    padding: 0 7px;
+    padding: 5px 7px;
     
-    line-height: 40px;
+    line-height: 30px;
 }
 
 .actions__left
@@ -75,8 +75,22 @@ body
     display: table-cell;
 
     text-align: center;
-    line-height: 40px;
 }
 
+.icon-wrap
+{
+    display: inline-block !important;
+    width: 35px !important;
+    height: 35px !important;
 
+    border-radius: 35px;
+    border: 1px solid #000;
+}
+
+.icon
+{
+    display: inline-block !important;
+    
+    line-height: 35px !important;
+}
 
