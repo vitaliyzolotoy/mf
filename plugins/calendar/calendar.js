@@ -1,5 +1,8 @@
-function insertAgenda() {
-    console.log(arguments);
+function insertAgenda(events) {
+    console.log();
+    $(events.feed.entry).each(function(key, event){
+        console.log(event.title.$t);
+    });
 }
 $(function(){
 
@@ -7,5 +10,5 @@ $(function(){
     s.type = "text/javascript";
     s.src = "http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=insertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true";
     $("head").append(s);
-    alert('Calendar');
+    // alert('Calendar');
 });
