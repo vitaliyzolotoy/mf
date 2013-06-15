@@ -8,6 +8,8 @@ var calendar = new function () {
     var self = this;
 
     this.init = function(){
+        moment.lang('ru');
+
         // load calendar events with including script
         $(function(){
             var script = document.createElement('script');
@@ -24,8 +26,7 @@ var calendar = new function () {
     this.processData = function(response){
         var events = [];
         $(response.feed.entry).each(function(key, event) {
-            console.log(event.gd$when[0].startTime);
-           // events.push(event.title.$t + ' ' + event.)
+            events.push(event.title.$t + ' ' + moment().calendar())
         });
 
         self.ready({
