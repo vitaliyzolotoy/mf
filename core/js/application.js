@@ -76,6 +76,13 @@
             }
             function playMusic(music, onCompleted) {
                 if (music) {
+                    var $alarmContentWrapper = $('<div class="alarm" />');
+                    var $alarmDateLabel = $('<div class="alarm__date" />');
+                    var $alarmTimeLabel = $('<span class="alarm__timer" />');
+                    var $alarmButtonStop = $('<button class="button button_type_stop" />');
+                    var $alarmButtonYet = $('<button class="button" />');
+                    $alarmContentWrapper.append($alarmDateLabel).append($alarmTimeLabel).append($alarmButtonStop).append($alarmButtonYet);
+                    $contentWrapper.html($alarmContentWrapper);
                     _ctx.UI.audioPlayer.play(music, onCompleted);
                 }
             }

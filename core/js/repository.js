@@ -21,7 +21,6 @@
         if (!item) {
             item = { 
                 useVoice: true,
-                // enabledPlugins: ['test', 'test2']
                 enabledPlugins: ['weather', 'horoscope', 'calendar', 'rss']
             };
         }
@@ -39,9 +38,9 @@
         var item = localStorage.getItem(alarmSettingsKey);
         if (!item) {
             var t = new Date();
-            var wakeupTime = new Date(t.setSeconds(t.getSeconds() + 3));
+            var wakeupTime = new Date(t.setSeconds(t.getSeconds() + 5));
             item = { 
-                enableAlarm: false,
+                enableAlarm: true,
                 wakeupTime: wakeupTime,
                 playMusic: true,
                 wakeupMusicSource: "sun.mp3",
