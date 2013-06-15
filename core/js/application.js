@@ -130,7 +130,7 @@
             function executePlugin(pluginName, useVoice, onExecuted) {
                 $mainWrapper.attr('id', pluginName);
 
-                function executePluginContent(pluginData, readableName) {
+                function executePluginContent(pluginData, readableName, text) {
                     var $pluginContentWrapper = $('<div class="plugin-content"></div>');
                     var $pluginContentTitle = $('<div class="plugin-content"></div>');
                     var $pluginContent = $('<div class="plugin-content"></div>');
@@ -138,13 +138,16 @@
                     $pluginContentTitle.text(pluginData.title);
                     $pluginContent.html(pluginData.html);
                     cachedPluginContents.push({ title: pluginName, readableName: readableName, $content: $pluginContentWrapper, data: pluginData });
-                    displayPluginContent($pluginContentWrapper, pluginData, readableName);
+                    displayPluginContent($pluginContentWrapper, pluginData, readableName, text);
                 }
-                function displayPluginContent($pluginContent, data, readableName) {
+                function displayPluginContent($pluginContent, data, readableName, text) {
                     setAppTitle(readableName);
                     function speech() {
-                        if (data.text && useVoice) {
-                            _ctx.utils.speech(data.text, function () {
+                        console.log('useVoice = ', useVoice, data, text);
+                        if (text && useVoice) {
+                            console.log('before');
+                            _ctx.utils.speech(text, function () {
+                                console.log('in voice');
                                 onExecuted();
                             });
                         }
@@ -181,7 +184,7 @@
                 var pluginContent = getCachedContent(pluginName);
                 if (pluginContent) {
 
-                    displayPluginContent(pluginContent.$content, pluginContent.data, pluginContent.readableName);
+                    displayPluginContent(pluginContent.$content, pluginContent.data, pluginContent.readableName, pluginContent.text);
                 }
                 else {
                     var plugin = _ctx.utils.findPluginByName(pluginName);
@@ -205,7 +208,7 @@
                         //get plugin data object
                         plugin.getData(function (data) {
 
-                            executePluginContent(data.data, plugin.getReadableName());
+                            executePluginContent(data.data, plugin.getReadableName(), data.text);
                         });
                     }
                     else {

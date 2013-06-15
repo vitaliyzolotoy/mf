@@ -20,7 +20,7 @@
         var item = localStorage.getItem(commonSettingsKey);
         if (!item) {
             item = { 
-                useVoice: false,
+                useVoice: true,
                 // enabledPlugins: ['test', 'test2']
                 enabledPlugins: ['weather', 'horoscope', 'calendar', 'rss']
             };
