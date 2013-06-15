@@ -99,7 +99,7 @@
         }
         //---Plugins
         function executePlugins() {
-            //private variables 
+            //private variables
             var currentIndex = 0;
             var pluginData = _settings.pluginSettings;
             //private functions 

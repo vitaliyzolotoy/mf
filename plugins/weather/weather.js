@@ -2,7 +2,6 @@
 var plugin = new function () {
 
     this.init = function(){
-        alert(1);
         console.log('weather init');
     };
 
@@ -12,7 +11,7 @@ var plugin = new function () {
 
     this.getData = function(ready) {
         ready({
-            text: ['Погода на сегодня', 'Одесса', 'На деребасовской хорошая погода'],
+            text: ['Погода в Одессе', 'Солнечно'],
             data: {
                 title: 'Гороскоп',
                 html: 'HTML'

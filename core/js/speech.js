@@ -10,6 +10,7 @@
 
     var playAudio = function(url, call)
     {
+        $('audio').remove();
         $('<audio/>', {
             src: url,
             autoplay: 'autoplay'
