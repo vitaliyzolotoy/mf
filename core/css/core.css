@@ -15,6 +15,7 @@ body
     background: url('../images/morning-friend.png');
     background-size: cover;
 }
+
 .morning-friend-inner
 {
     position: absolute;
@@ -23,15 +24,54 @@ body
     bottom: 0;
     left: 0;
     
-    padding: 95px 35px;
+    margin: 95px 33px 95px 34px;
 }
 
-.morning-friend-inner .top-actions
+.top-actions,
+.bottom-actions
 {
-    padding: 3px;
-    height: 24px;
-    background-color: #E9E9E9;
+    font-size: 25px;
+    
+    width: 100%;
+    height: 40px;
+    
+    background: green;
 }
+
+.top-actions-left,
+.top-actions-right
+{
+    display: inline-block;
+    
+    padding: 0 5px;
+    
+    line-height: 40px;
+}
+
+.top-actions-left
+{
+    float: left;
+}
+
+.top-actions-right
+{
+    float: right;
+}
+
+.bottom-actions
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    background: red;
+}
+
+
+
+
+
+
 .morning-friend-inner .bottom-actions
 {
     height: 34px;
@@ -42,24 +82,7 @@ body
     height: 401px;
 }
 
-a.button
-{
-    background-repeat: no-repeat;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
-}
-a.setting-action
-{
-    background-image: url('../images/settings.png');
-    float: right;
-    margin-right: 10px;
-}
-a.setting-action:hover
-{
-    background-image: url('../images/settings-hovered.png');
-}
+
 .time-counter-wrapper
 {
     margin-top: 150px;
