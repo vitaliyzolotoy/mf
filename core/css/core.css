@@ -57,7 +57,6 @@ body
     font-size: 15px;
 }
 
-
 .actions__left,
 .actions__right
 {
@@ -107,3 +106,32 @@ body
     text-shadow: 0 0 2px #000;
 }
 
+.button
+{
+    display: block;
+    margin: 0 auto 10px;
+    width: 225px;
+    height: 52px;
+    border: 1px solid #282c34;
+    border-radius: 3px;
+    background-color: #323948;
+    box-shadow: 0 2px 3px rgba(0,0,0,.33), inset 0 1px 0 rgba(255,255,255,.2);
+    color: #b3b7bf;
+    font: 24px/54px "Helvetica";
+    text-shadow: 0 1px 1px rgba(0,0,0,.65);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.button:active
+{
+    box-shadow: none;
+    line-height: 52px;
+}
+
+.button.button_type_stop
+{
+    letter-spacing: .5em;
+    background-color: #720606;
+}
