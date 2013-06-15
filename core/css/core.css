@@ -16,7 +16,7 @@ body
     background-size: cover;
 }
 
-.morning-friend-inner
+.morning-friend__inner
 {
     position: absolute;
     top: 0;
@@ -24,76 +24,59 @@ body
     bottom: 0;
     left: 0;
     
-    margin: 95px 33px 95px 34px;
+    margin: 95px 33px 175px 34px;
 }
 
-.top-actions,
-.bottom-actions
+.morning-friend__body
+{
+    height: 100%;
+}
+
+.actions
 {
     font-size: 25px;
     
+    display: table;
+
     width: 100%;
-    height: 40px;
     
-    background: green;
+    line-height: 40;
+    text-align: center;
 }
 
-.top-actions-left,
-.top-actions-right
+.actions_type_bottom
+{
+    font-size: 15px;
+}
+
+
+.actions__left,
+.actions__right
 {
     display: inline-block;
     
-    padding: 0 5px;
+    padding: 0 7px;
     
     line-height: 40px;
 }
 
-.top-actions-left
+.actions__left
 {
     float: left;
 }
 
-.top-actions-right
+.actions__right
 {
     float: right;
 }
 
-.bottom-actions
+.actions__item
 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    
-    background: red;
-}
+    display: table-cell;
 
-
-
-
-
-
-.morning-friend-inner .bottom-actions
-{
-    height: 34px;
-    background-color: #D9ECFF;
-}
-.morning-friend-inner .content-wrapper
-{
-    height: 401px;
-}
-
-
-.time-counter-wrapper
-{
-    margin-top: 150px;
     text-align: center;
-    font-family: 'trebuchet MS';
-    font-size: 26px;
-    color: #3399FF;
-    height: 180px;
+    line-height: 40px;
 }
-.player-wrapper
-{
-    padding-left: 58px;
-    padding-top: 96px;
-}
+
+
+
