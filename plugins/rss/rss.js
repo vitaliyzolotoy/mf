@@ -17,7 +17,7 @@ var plugin = new function () {
                 });
 
                 ready({
-                    text: feeds.join(', '),
+                    text: 'Это фиды, но их много и будет дого грузиться',//feeds.join(', '),
                     data: {
                         title: 'Recent Feeds',
                         html: '<ul><li>'+feeds.join('</li><li>')+'</li></ul>'
