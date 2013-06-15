@@ -30,7 +30,7 @@ var calendar = new function () {
         });
 
         self.ready({
-            text: events.join(', '),
+            text: ['Клевое событие', 'Завтра о 19:35' ,'Еще одно событие', 'В понедельнык о 7:35'],
             data: {
                 title: 'Recent Feeds',
                 html: '<ul><li>'+events.join('</li><li>')+'</li></ul>'

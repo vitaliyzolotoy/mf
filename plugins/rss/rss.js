@@ -11,13 +11,15 @@ var plugin = new function () {
     this.getData = function(ready) {
         var feeds = [];
         $(function(){
-            $.get('http://feeds.feedburner.com/americhka/oBlg', function(data){
+            $.get('http://news.rambler.ru/rss/Odessa/', function(data){
                 $(data).find('item').each(function(key, item){
                     feeds.push($(item).find('title:first').text());
                 });
 
+                feeds = feeds.slice(0,3);
+                console.log(feeds);
                 ready({
-                    text: 'Это фиды, но их много и будет дого грузиться',//feeds.join(', '),
+                    text: feeds,
                     data: {
                         title: 'Recent Feeds',
                         html: '<ul><li>'+feeds.join('</li><li>')+'</li></ul>'

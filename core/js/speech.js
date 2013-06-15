@@ -14,9 +14,30 @@
             src: url,
             autoplay: 'autoplay'
         }).appendTo('body').bind('ended', function(){
-            call();
-        });
+                setTimeout(function(){
+                    call();
+                }, 10);
+            });
     };
 
-    playAudio(getAudioUrl(text), onCompleted);
+    if (text instanceof Array)
+    {
+        if (text.length > 1)
+        {
+            playAudio(getAudioUrl(text[0]), function(){
+                console.log(text);
+                text = text.splice(1, text.length);
+                console.log(text);
+                TextToSpeach(text, onCompleted);
+            });
+        }
+        else
+        {
+            playAudio(getAudioUrl(text[0]), onCompleted);
+        }
+    }
+    else
+    {
+        playAudio(getAudioUrl(text), onCompleted);
+    }
 }
