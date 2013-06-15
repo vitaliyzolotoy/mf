@@ -231,6 +231,7 @@
                         //init plugin
                         plugin.init(pluginDataStorage, globalSettings);
                         //get plugin data object
+                        setAppTitle(plugin.getReadableName());
                         plugin.getData(function (data) {
 
                             executePluginContent(data.data, plugin.getReadableName(), data.text);
