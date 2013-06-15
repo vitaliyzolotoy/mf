@@ -178,6 +178,25 @@ body
     color: rgba(255, 255, 255, 0.5);
 }
 
+.plugins-container__inner
+{
+    overflow: hidden;
+    
+    white-space: nowrap;
+}
+
+.plugin-content
+{
+    display: inline-block;
+    
+    width: 100%;
+
+    vertical-align: top;
+    white-space: normal;
+}
+
+
+
 
 
 
