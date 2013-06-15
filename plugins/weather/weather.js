@@ -10,13 +10,25 @@ var plugin = new function () {
     };
 
     this.getData = function(ready) {
-        ready({
-            text: ['Погода в Одессе', 'Солнечно'],
-            data: {
-                title: 'Гороскоп',
-                html: 'HTML'
-            }
-        });
+        $.ajax($.extend({
+            'url': 'http://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-',
+            'success' :
+                function(){
+                    ymaps.ready(function() {
+                        console.log(ymaps.geolocation.latitude, ymaps.geolocation.longitude);
+                    });
+                },
+            'dataType' : 'script'
+        }));
+//
+//
+//        ready({
+//            text: ['Погода в Одессе', 'Солнечно'],
+//            data: {
+//                title: 'Гороскоп',
+//                html: 'HTML'
+//            }
+//        });
     };
 };
 

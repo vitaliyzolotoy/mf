@@ -32,7 +32,7 @@ var calendar = new function () {
         self.ready({
             text: ['Календарь', 'Прогон презентации Морнинг Френд', 'Завтра о 12:20' ,'Еще одно событие', 'В понедельнык в 7:35'],
             data: {
-                title: 'Recent Feeds',
+                title: 'Календарь',
                 html: '<ul><li>'+events.join('</li><li>')+'</li></ul>'
             }
         });
