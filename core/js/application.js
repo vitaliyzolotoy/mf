@@ -38,7 +38,19 @@
         }
         function executeAlarm() {
             setAppTitle('Будильник');
+
+            function onCounterCompleted() {
+                if (alarmSettings.playMusic) {
+                    playMusic(alarmSettings.wakeupMusicSource, function () {
+                        executePlugins();
+                    });
+                }
+                else {
+                    executePlugins();
+                }
+            }
             function displayTimeCounter(targetDate, onCompleted) {
+                // var onCompletedInitial = onCompleted;
                 function displayTimeCounterStep() {
                     function displayTimeItem(item, $container) {
                         if (item < 10) {
@@ -76,11 +88,26 @@
             }
             function playMusic(music, onCompleted) {
                 if (music) {
+                    console.log(music);
                     var $alarmContentWrapper = $('<div class="alarm" />');
                     var $alarmDateLabel = $('<div class="alarm__date" />');
                     var $alarmTimeLabel = $('<span class="alarm__timer" />');
-                    var $alarmButtonStop = $('<button class="button button_type_stop" />');
-                    var $alarmButtonYet = $('<button class="button" />');
+                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
+                    $alarmButtonStop.click(function(){
+                        _ctx.UI.audioPlayer.stop();
+                        onCompleted();
+                        console.log('clicked stop');
+                    });
+                    var $alarmButtonYet = $('<button class="button">Еще 5 минут :-)</button>');
+                    $alarmButtonYet.click(function(){
+                        _ctx.UI.audioPlayer.stop();
+                        //onCompleted()
+                        var t = new Date();
+                        var wakeupTimeMore = new Date(t.setSeconds(t.getSeconds() + 5));
+
+                        displayTimeCounter(wakeupTimeMore, onCounterCompleted);
+                        console.log('clicked more');
+                    });
                     $alarmContentWrapper.append($alarmDateLabel).append($alarmTimeLabel).append($alarmButtonStop).append($alarmButtonYet);
                     $contentWrapper.html($alarmContentWrapper);
                     _ctx.UI.audioPlayer.play(music, onCompleted);
@@ -90,16 +117,7 @@
             var alarmSettings = _settings.alarmSettings;
             if (alarmSettings.wakeupTime) {
                 if (alarmSettings.showTimeCounter) {
-                    displayTimeCounter(alarmSettings.wakeupTime, function () {
-                        if (alarmSettings.playMusic) {
-                            playMusic(alarmSettings.wakeupMusicSource, function () {
-                                executePlugins();
-                            });
-                        }
-                        else {
-                            executePlugins();
-                        }
-                    });
+                    displayTimeCounter(alarmSettings.wakeupTime, onCounterCompleted);
                 }
                 else {
                     executePlugins();
@@ -256,18 +274,24 @@
     }
     this.UI = new function () {
         this.audioPlayer = new function () {
-            var _currentPlayer = "";
+            var _currentPlayer = '';
             this.play = function (source, onCompleted) {
-                onCompleted();
-            }
+                $('<audio/>', {
+                    src: source,
+                    autoplay: 'autoplay'
+                }).appendTo('body').bind('ended', function(){
+                        onCompleted();
+                    });
+            };
             this.pause = function () {
                 if (_currentPlayer) {
-
+                    _currentPlayer.remove();
                 }
-            }
+            };
             this.stop = function () {
+                $('audio').remove();
                 if (_currentPlayer) {
-
+                    _currentPlayer.remove();
                 }
             }
         }
