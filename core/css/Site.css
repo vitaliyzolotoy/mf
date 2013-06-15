@@ -1,11 +1,14 @@
 .morning-friend
 {
     padding: 152px 36px 114px 36px;
-    background-image: url('../images/iphone.png');
+    background-image: url('../images/iphone5.png');
     background-repeat: no-repeat;
     width: 317px;
     height: 463px;
+    margin: auto;
     overflow: hidden;
+    
+    background-size: cover;
 }
 .morning-friend-inner
 {
