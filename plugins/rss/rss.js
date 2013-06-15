@@ -9,7 +9,7 @@ var plugin = new function () {
     },
 
     this.getData = function(ready) {
-        var feeds = [];
+        var feeds = ['Новости'];
         $(function(){
             $.get('http://news.rambler.ru/rss/scitech/', function(data){
                 $(data).find('item').each(function(key, item){
