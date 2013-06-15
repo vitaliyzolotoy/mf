@@ -10,7 +10,7 @@
         if (!item) {
             item = {
             language: 'ru',
-                pluginDisplayTime: 5,
+                pluginDisplayTime: 3,
                 recycle: false
             };
         }
