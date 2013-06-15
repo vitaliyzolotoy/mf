@@ -60,10 +60,17 @@ $(function() {
 
     function textTranslate(text, item){
         var translate = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20130607T142527Z.cf86b12ec895a7b8.dfebb107ab4ed0b6bb45333fce71bb199b5476ab&lang=en-ru&text='+text;
-        
-        $.getJSON(translate, function(data){
-            textToSpeech('Погода...' + data.text[0], item);
+
+        var translated = '';
+        $.ajax({
+            type: 'GET',
+            url: translate,
+            dataType: 'json',
+            success: function(data) { translated = data.text[0]},
+            data: {},
+            async: false
         });
+        return translated;
     }
 
     function textToSpeech(text, item){    
