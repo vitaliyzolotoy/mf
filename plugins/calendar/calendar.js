@@ -24,7 +24,8 @@ var calendar = new function () {
     this.processData = function(response){
         var events = [];
         $(response.feed.entry).each(function(key, event) {
-            events.push(event.title.$t)
+            console.log(event.gd$when[0].startTime);
+           // events.push(event.title.$t + ' ' + event.)
         });
 
         self.ready({
