@@ -18,8 +18,8 @@ var plugin= new function () {
         onCompleted({
             text: 'text representation of data',
             data: {
-                title: 'title',
-                html: '<div />'
+                title: 'TEST plugin test',
+                html: 'TEST <h1>plugin</h1> test'
             }
         });
     }
