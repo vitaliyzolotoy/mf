@@ -1,0 +1,61 @@
+.morning-friend
+{
+    padding: 152px 36px 114px 36px;
+    background-image: url('../images/iphone.png');
+    background-repeat: no-repeat;
+    width: 317px;
+    height: 463px;
+    overflow: hidden;
+}
+.morning-friend-inner
+{
+    height: 460px;
+    overflow: hidden;
+}
+.morning-friend-inner .top-actions
+{
+    padding: 3px;
+    height: 24px;
+    background-color: #E9E9E9;
+}
+.morning-friend-inner .bottom-actions
+{
+    height: 34px;
+    background-color: #D9ECFF;
+}
+.morning-friend-inner .content-wrapper
+{
+    height: 401px;
+}
+a.button
+{
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+a.setting-action
+{
+    background-image: url('../images/settings.png');
+    float: right;
+    margin-right: 10px;
+}
+a.setting-action:hover
+{
+    background-image: url('../images/settings-hovered.png');
+}
+.time-counter-wrapper
+{
+    margin-top: 150px;
+    text-align: center;
+    font-family: 'trebuchet MS';
+    font-size: 26px;
+    color: #3399FF;
+    height: 180px;
+}
+.player-wrapper
+{
+    padding-left: 58px;
+    padding-top: 96px;
+}
