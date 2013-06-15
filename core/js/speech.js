@@ -25,9 +25,7 @@
         if (text.length > 1)
         {
             playAudio(getAudioUrl(text[0]), function(){
-                console.log(text);
                 text = text.splice(1, text.length);
-                console.log(text);
                 TextToSpeach(text, onCompleted);
             });
         }
