@@ -9,17 +9,12 @@ var plugin = new function () {
         },
 
         this.getData = function(ready) {
-            $(function(){
-                $.get('http://horoscope.ra-project.net/api/3/', function(data){
-                    ready({
-                        text: 'Гороскоп на сегодня. Близнецы' + $(data).find('text').text(),
-                        data: {
-                            title: 'Гороскоп',
-                            html: 'HTML'
-                        }
-                    });
-
-                });
+            ready({
+                text: ['Погода на сегодня', 'Одесса', 'На деребасовской хорошая погода'],
+                data: {
+                    title: 'Гороскоп',
+                    html: 'HTML'
+                }
             });
         }
 };
