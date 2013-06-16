@@ -93,7 +93,7 @@
                     var currentMinutes = new Date().getMinutes();
                     var $alarmContentWrapper = $('<div class="alarm" />');
                     var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
-                    var $alarmTimeLabel = $('<div class="alarm__timer">'+currentHours+':'+currentMinutes+'</div>');
+                    var $alarmTimeLabel = $('<div class="alarm__timer">'+(currentHours<=9 ? '0' + currentHours : currentHours)+':'+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes)+'</div>');
                     var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
                     $alarmButtonStop.click(function(){
                         _ctx.UI.audioPlayer.stop();
