@@ -75,10 +75,11 @@
                         onCompleted();
                     }
                 }
-                var $timeCounterWrapper = $('<div class="time-counter-wrapper" />');
-                var $hours = $('<span class="time-counter-hours" />');
-                var $minutes = $('<span class="time-counter-minutes" />');
-                var $seconds = $('<span class="time-counter-seconds" />');
+
+                var $timeCounterWrapper = $('<div class="time" />');
+                var $hours = $('<span class="time__hours" />');
+                var $minutes = $('<span class="time__minutes" />');
+                var $seconds = $('<span class="time__seconds" />');
                 $timeCounterWrapper.append($hours).append(':').append($minutes).append(':').append($seconds);
                 $contentWrapper.html($timeCounterWrapper);
                 var interval = window.setInterval(function () {

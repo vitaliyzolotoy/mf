@@ -190,7 +190,7 @@ body
 .alarm__date
 {
     font-size: 15px;
-    
+
     margin: 50px 0 20px 0;
 
     text-transform: uppercase;
@@ -213,4 +213,14 @@ body
 
     vertical-align: top;
     white-space: normal;
+}
+
+.time
+{
+    text-align: center;
+    font-size: 70px;
+    margin: 128px 0 50px 0;
+    letter-spacing: -3px;
+    line-height: 75px;
+    color: #fff;
 }
