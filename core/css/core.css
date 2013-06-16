@@ -56,12 +56,22 @@ body
     background-color: #4C944B;
 }
 
+#time .morning-friend__inner
+{
+	background-color: #312F2C;	
+}
+
 .morning-friend__body
 {
     height: 368px;
     border-width: 1px 0;
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.5);
+}
+
+#time .actions
+{
+	visibility: hidden;
 }
 
 .actions
@@ -240,6 +250,8 @@ body
 }
 
 
-
-
+#time .time
+{
+	color: #889999;
+}
 
