@@ -33,16 +33,17 @@
         //start application
 
         $('.actions__left .icon:first').click(function () {
-            if ($('audio').size()) {
-                var audio = $('audio').get(0);
-                if (audio.paused) {
-                    audio.play();
-                    $(this).addClass('icon-pause').removeClass('icon-play');
-                } else {
-                    audio.pause();
-                    $(this).addClass('icon-play').removeClass('icon-pause');
-                }
+            var cssClass = $(this).attr('class');
+            if (cssClass == 'icon-pause') {
+                _ctx.UI.audioPlayer.play();
+                $(this).addClass('icon-play').removeClass('icon-pause');
             }
+            else {
+                _ctx.UI.audioPlayer.pause();
+                $(this).addClass('icon-pause').removeClass('icon-play');
+            }
+
+
         });
         //---Alarm
         function setAppTitle(text) {
@@ -211,7 +212,7 @@
                     $pluginContentWrapper.append($pluginContentTitle).append($pluginContent);
                     $pluginContentTitle.text(pluginData.title);
                     $pluginContent.html(pluginData.html);
-                    cachedPluginContents.push({ title: pluginName, readableName: readableName, $content: $pluginContentWrapper, data: pluginData });
+                    cachedPluginContents.push({ title: pluginName, readableName: readableName, $content: $pluginContentWrapper, data: pluginData, text: text });
                     displayPluginContent($pluginContentWrapper, pluginData, readableName, text);
                 }
                 function displayPluginContent($pluginContent, data, readableName, text) {
@@ -324,16 +325,24 @@
         this.audioPlayer = new function () {
             var _currentPlayer = '';
             this.play = function (source, onCompleted) {
-                $('<audio/>', {
-                    src: source,
-                    autoplay: 'autoplay'
-                }).appendTo('body').bind('ended', function () {
-                    onCompleted();
-                });
-            };
-            this.pause = function () {
                 if (_currentPlayer) {
-                    _currentPlayer.remove();
+                    _currentPlayer.play();
+                }
+                else {
+                    _currentPlayer = $('<audio/>', {
+                        src: source,
+                        autoplay: 'autoplay'
+                    }).appendTo('body').bind('ended', function () {
+                        onCompleted();
+                    });
+
+                };
+                this.pause = function () {
+                    if (_currentPlayer) {
+                        if (!_currentPlayer.paused) {
+                            _currentPlayer.pause();
+                        }
+                    }
                 }
             };
             this.stop = function () {
