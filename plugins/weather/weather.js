@@ -24,7 +24,7 @@ var plugin = new function () {
                     text: weather,
                     data: {
                         title: '',
-                        html: '<div class="plugin-icon"><i class="icon-big icon-'+icon+'"></i>'+weather+'</div>'
+                        html: '<div class="plugin-icon"><i class="i-weather '+icon+'"></i></div>'+weather+''
                     }
                 });
             });
