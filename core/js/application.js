@@ -121,7 +121,8 @@
                             alarmTimerCounter++;
                             $('.alarm__timer').text((currentHours<=9 ? '0' + currentHours : currentHours)+ (alarmTimerCounter%2==0 ? ' ' : ':')+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes));
                         }
-                    }, 2000);                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
+                    }, 2000);                    
+                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
                     $alarmButtonStop.click(function () {
                         _ctx.UI.audioPlayer.stop();
                         onCompleted();
