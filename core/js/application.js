@@ -298,6 +298,7 @@
             }
         }
         function endPluginsExecuting() {
+            $mainWrapper.attr('id', 'end');
             $contentWrapper.html('end');
         }
 
