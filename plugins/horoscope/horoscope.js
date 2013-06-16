@@ -13,11 +13,12 @@ var plugin = new function () {
     this.getData = function (ready) {
         $(function () {
             $.get('http://horoscope.ra-project.net/api/3/', function (data) {
+                var text = $(data).find('text').text();
                 ready({
-                    text: 'Гороскоп на сегодня. Близнецы' + $(data).find('text').text(),
+                    text: 'Гороскоп на сегодня. Близнецы' + text,
                     data: {
                         title: '',
-                        html: '<div class="plugin-icon"><i class="icon-big icon-magic"></i></div>'
+                        html: '<div class="plugin-icon"><i class="icon-big icon-magic"></i>'+text+'</div>'
                     }
                 });
 
