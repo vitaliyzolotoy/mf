@@ -8,7 +8,7 @@ var plugin = new function () {
         return 'rss';
     };
     this.getReadableName = function () {
-        return 'RSS';
+        return 'Новости';
     };
     this.getData = function (ready) {
         var feeds = ['Новости'];
@@ -22,8 +22,8 @@ var plugin = new function () {
                 ready({
                     text: feeds,
                     data: {
-                        title: 'Recent Feeds',
-                        html: '<ul><li>' + feeds.join('</li><li>') + '</li></ul>'
+                        title: 'Наука и техника',
+                        html: '<div class="list"><div class="list__item">' + feeds.join('</div><div>') + '</li></div>'
                     }
                 });
             });

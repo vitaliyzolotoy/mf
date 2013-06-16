@@ -32,6 +32,19 @@
         var $appTitle = $('.actions__title');
         //start application
 
+        $('.actions__left .icon:first').click(function(){
+            if ($('audio').size())
+            {
+                var audio = $('audio').get(0);
+                if (audio.paused) {
+                    audio.play();
+                    $(this).addClass('icon-pause').removeClass('icon-play');
+                } else {
+                    audio.pause();
+                    $(this).addClass('icon-play').removeClass('icon-pause');
+                }
+            }
+        });
         //---Alarm
         function setAppTitle(text) {
             $appTitle.text(text);
@@ -75,10 +88,10 @@
                         onCompleted();
                     }
                 }
-                var $timeCounterWrapper = $('<div class="time-counter-wrapper" />');
-                var $hours = $('<span class="time-counter-hours" />');
-                var $minutes = $('<span class="time-counter-minutes" />');
-                var $seconds = $('<span class="time-counter-seconds" />');
+                var $timeCounterWrapper = $('<div class="time" />');
+                var $hours = $('<span class="time__hours" />');
+                var $minutes = $('<span class="time__minutes" />');
+                var $seconds = $('<span class="time__seconds" />');
                 $timeCounterWrapper.append($hours).append(':').append($minutes).append(':').append($seconds);
                 $contentWrapper.html($timeCounterWrapper);
                 var interval = window.setInterval(function () {
@@ -86,6 +99,7 @@
                 }, 1000);
                 displayTimeCounterStep();
             }
+            var timeUpdateInterval;
             function playMusic(music, onCompleted) {
                 if (music) {
                     // console.log(music);
@@ -93,8 +107,21 @@
                     var currentMinutes = new Date().getMinutes();
                     var $alarmContentWrapper = $('<div class="alarm" />');
                     var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
-                    var $alarmTimeLabel = $('<div class="alarm__timer">' + currentHours + ':' + currentMinutes + '</div>');
-                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
+                    var $alarmTimeLabel = $('<div class="alarm__timer">'+(currentHours<=9 ? '0' + currentHours : currentHours)+':'+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes)+'</div>');
+					var alarmTimerCounter = 0;
+                    if (timeUpdateInterval)
+                    {
+                        clearInterval(timeUpdateInterval);
+                    }
+                    timeUpdateInterval = setInterval(function(){
+                        if ($('.alarm__timer').size())
+                        {
+                            var currentHours = new Date().getHours();
+                            var currentMinutes = new Date().getMinutes();
+                            alarmTimerCounter++;
+                            $('.alarm__timer').text((currentHours<=9 ? '0' + currentHours : currentHours)+ (alarmTimerCounter%2==0 ? ' ' : ':')+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes));
+                        }
+                    }, 2000);                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
                     $alarmButtonStop.click(function () {
                         _ctx.UI.audioPlayer.stop();
                         onCompleted();
