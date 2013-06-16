@@ -94,6 +94,16 @@
                     var $alarmContentWrapper = $('<div class="alarm" />');
                     var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
                     var $alarmTimeLabel = $('<div class="alarm__timer">'+(currentHours<=9 ? '0' + currentHours : currentHours)+':'+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes)+'</div>');
+                    var alarmTimerCounter = 0;
+                    setInterval(function(){
+                        if ($('.alarm__timer'))
+                        {
+                            var currentHours = new Date().getHours();
+                            var currentMinutes = new Date().getMinutes();
+                            alarmTimerCounter++;
+                            $('.alarm__timer').text((currentHours<=9 ? '0' + currentHours : currentHours)+ (alarmTimerCounter%2==0 ? ' ' : ':')+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes));
+                        }
+                    }, 1000);
                     var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
                     $alarmButtonStop.click(function(){
                         _ctx.UI.audioPlayer.stop();
