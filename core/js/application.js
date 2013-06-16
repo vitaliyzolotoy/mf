@@ -38,8 +38,10 @@
                 var audio = $('audio').get(0);
                 if (audio.paused) {
                     audio.play();
+                    $(this).addClass('icon-pause').removeClass('icon-play');
                 } else {
                     audio.pause();
+                    $(this).addClass('icon-play').removeClass('icon-pause');
                 }
             }
         });
