@@ -18,13 +18,13 @@ var plugin = new function () {
     this.getData = function(ready) {
 
         self.getLocation(function(latitude, longitude){
-            self.getWeather(latitude, longitude, function(weather){
+            self.getWeather(latitude, longitude, function(weather, icon){
                 weather = self.transalate(weather);
                 ready({
                     text: weather,
                     data: {
                         title: '',
-                        html: '<div class="plugin-icon"><i class="icon-big icon-sun"></i>'+weather+'</div>'
+                        html: '<div class="plugin-icon"><i class="icon-big icon-'+icon+'"></i>'+weather+'</div>'
                     }
                 });
             });
@@ -47,7 +47,7 @@ var plugin = new function () {
     this.getWeather = function(latitude, longitude, ready) {
         var url = 'https://api.forecast.io/forecast/64c1bf92287684b567c7c2dc9d489808/'+latitude+','+longitude+'?callback=?';
         $.getJSON(url, function(data) {
-            ready('Сейчас ' + self.toCelsium(data.currently.temperature) + ' градуса тепла. ' + data.hourly.summary);
+            ready('Сейчас ' + self.toCelsium(data.currently.temperature) + ' градуса тепла. ' + data.hourly.summary, data.currently.icon);
         });
     };
 
