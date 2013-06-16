@@ -8,17 +8,12 @@
         return url;
     };
 
-    var playAudio = function(url, call)
-    {
-        $('audio').remove();
-        $('<audio/>', {
-            src: url,
-            autoplay: 'autoplay'
-        }).appendTo('body').bind('ended', function(){
-                setTimeout(function(){
-                    call();
-                }, 10);
-            });
+    var playAudio = function (url, call) {
+        ApplicationContext.UI.audioPlayer.play(url, function () {
+            setTimeout(function () {
+                call();
+            }, 10);
+        });
     };
 
     if (text instanceof Array)
