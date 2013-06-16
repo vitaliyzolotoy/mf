@@ -11,7 +11,7 @@ var plugin = new function () {
         return 'Новости';
     };
     this.getData = function (ready) {
-        var feeds = ['Новости'];
+        var feeds = ['Новости науки и техники'];
         $(function () {
             $.get('http://news.rambler.ru/rss/scitech/', function (data) {
                 $(data).find('item').each(function (key, item) {
@@ -22,8 +22,8 @@ var plugin = new function () {
                 ready({
                     text: feeds,
                     data: {
-                        title: 'Наука и техника',
-                        html: '<div class="list"><div class="list__item">' + feeds.join('</div><div>') + '</li></div>'
+                        title: '',
+                        html: '<div class="list"><div class="list__title">' + feeds.join('</div><div class="list__item">') + '</li></div>'
                     }
                 });
             });
