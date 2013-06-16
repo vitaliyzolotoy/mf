@@ -18,7 +18,7 @@ var plugin = new function () {
                     text: 'Гороскоп на сегодня. Близнецы' + text,
                     data: {
                         title: '',
-                        html: '<div class="plugin-icon"><i class="icon-big icon-magic"></i></div>'+text+''
+                        html: '<div class="plugin-icon"><i class="icon-big icon-magic"></i></div><div class="horoscope">Близнецы –'+text+'</div>'
                     }
                 });
 
