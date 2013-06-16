@@ -140,6 +140,17 @@ body
     color: rgba(255, 255, 255, 0.5);
 }
 
+.icon-big
+{
+    font-size: 120px;
+    
+    display: block !important;
+    
+    margin: 0 auto 20px auto;
+    
+    line-height: 120px !important;
+}
+
 .button
 {
     display: block;
@@ -230,18 +241,6 @@ body
     
     text-align: center;
 }
-
-.list__title .icon
-{
-    font-size: 120px;
-    
-    display: block !important;
-    
-    margin: 0 auto 20px auto;
-    
-    line-height: 120px !important;
-}
-
 
 .list__item
 {
