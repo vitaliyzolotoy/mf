@@ -19,11 +19,12 @@ var plugin = new function () {
 
         self.getLocation(function(latitude, longitude){
             self.getWeather(latitude, longitude, function(weather){
+                weather = self.transalate(weather);
                 ready({
-                    text: self.transalate(weather),
+                    text: weather,
                     data: {
                         title: '',
-                        html: '<div class="plugin-icon"><i class="icon-big icon-sun"></i></div>'
+                        html: '<div class="plugin-icon"><i class="icon-big icon-sun"></i>'+weather+'</div>'
                     }
                 });
             });
