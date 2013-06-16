@@ -32,9 +32,8 @@
         var $appTitle = $('.actions__title');
         //start application
 
-        $('.actions__left .icon:first').click(function(){
-            if ($('audio').size())
-            {
+        $('.actions__left .icon:first').click(function () {
+            if ($('audio').size()) {
                 var audio = $('audio').get(0);
                 if (audio.paused) {
                     audio.play();
@@ -63,6 +62,7 @@
                 }
             }
             function displayTimeCounter(targetDate, onCompleted) {
+                $mainWrapper.attr('id', 'time');
                 // var onCompletedInitial = onCompleted;
                 function displayTimeCounterStep() {
                     function displayTimeItem(item, $container) {
@@ -102,24 +102,23 @@
             var timeUpdateInterval;
             function playMusic(music, onCompleted) {
                 if (music) {
+                    $mainWrapper.attr('id', 'alarm');
                     // console.log(music);
                     var currentHours = new Date().getHours();
                     var currentMinutes = new Date().getMinutes();
                     var $alarmContentWrapper = $('<div class="alarm" />');
                     var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
-                    var $alarmTimeLabel = $('<div class="alarm__timer">'+(currentHours<=9 ? '0' + currentHours : currentHours)+':'+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes)+'</div>');
-					var alarmTimerCounter = 0;
-                    if (timeUpdateInterval)
-                    {
+                    var $alarmTimeLabel = $('<div class="alarm__timer">' + (currentHours <= 9 ? '0' + currentHours : currentHours) + ':' + (currentMinutes <= 9 ? '0' + currentMinutes : currentMinutes) + '</div>');
+                    var alarmTimerCounter = 0;
+                    if (timeUpdateInterval) {
                         clearInterval(timeUpdateInterval);
                     }
-                    timeUpdateInterval = setInterval(function(){
-                        if ($('.alarm__timer').size())
-                        {
+                    timeUpdateInterval = setInterval(function () {
+                        if ($('.alarm__timer').size()) {
                             var currentHours = new Date().getHours();
                             var currentMinutes = new Date().getMinutes();
                             alarmTimerCounter++;
-                            $('.alarm__timer').text((currentHours<=9 ? '0' + currentHours : currentHours)+ (alarmTimerCounter%2==0 ? ' ' : ':')+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes));
+                            $('.alarm__timer').text((currentHours <= 9 ? '0' + currentHours : currentHours) + (alarmTimerCounter % 2 == 0 ? ' ' : ':') + (currentMinutes <= 9 ? '0' + currentMinutes : currentMinutes));
                         }
                     }, 2000);                    
                     var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
@@ -170,15 +169,19 @@
             var _currentPluginName;
             $contentWrapper.html($pluginsContainerWrapper);
             var $horoscopeCrumb = $('.horoCrumb').click(function () {
+                _ctx.UI.audioPlayer.stop();
                 executePlugin('horoscope', _settings.pluginSettings.useVoice, function () { });
             });
             var $weatherCrumb = $('.weatherCrumb').click(function () {
+                _ctx.UI.audioPlayer.stop();
                 executePlugin('weather', _settings.pluginSettings.useVoice, function () { });
             });
             var $calendarCrumb = $('.calendarCrumb').click(function () {
+                _ctx.UI.audioPlayer.stop();
                 executePlugin('calendar', _settings.pluginSettings.useVoice, function () { });
             });
             var $rssCrumb = $('.rssCrumb').click(function () {
+                _ctx.UI.audioPlayer.stop();
                 executePlugin('rss', _settings.pluginSettings.useVoice, function () { });
             });
             //private functions 
