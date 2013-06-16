@@ -56,6 +56,11 @@ body
     background-color: #4C944B;
 }
 
+#time .morning-friend__inner
+{
+	background-color: #312F2C;	
+}
+
 .morning-friend__body
 {
     height: 368px;
@@ -64,6 +69,11 @@ body
     border-color: rgba(255, 255, 255, 0.5);
     
     overflow-y: scroll;
+}
+
+#time .actions
+{
+	visibility: hidden;
 }
 
 .actions
@@ -253,6 +263,8 @@ body
 }
 
 
-
-
+#time .time
+{
+	color: #889999;
+}
 

@@ -34,13 +34,13 @@
 
         $('.actions__left .icon:first').click(function () {
             var cssClass = $(this).attr('class');
-            if (cssClass == 'icon-pause') {
-                _ctx.UI.audioPlayer.play();
-                $(this).addClass('icon-play').removeClass('icon-pause');
+            if ($(this).hasClass('icon-pause')) {
+                _ctx.UI.audioPlayer.pause();
+                $(this).removeClass('icon-pause').addClass('icon-play');
             }
             else {
-                _ctx.UI.audioPlayer.pause();
-                $(this).addClass('icon-pause').removeClass('icon-play');
+                _ctx.UI.audioPlayer.play();
+                $(this).removeClass('icon-play').addClass('icon-pause');
             }
 
 
@@ -325,20 +325,23 @@
         this.audioPlayer = new function () {
             var _currentPlayer = '';
             this.play = function (source, onCompleted) {
-                if (_currentPlayer) {
-                    _currentPlayer.play();
-                }
-                else {
+                if (source || !_currentPlayer) {
+                    $('.actions__left .icon:first').removeClass('icon-play').addClass('icon-pause');
                     _currentPlayer = $('<audio/>', {
                         src: source,
                         autoplay: 'autoplay'
                     }).appendTo('body').bind('ended', function () {
                         onCompleted();
-                    });
-
-                };
+                    })[0];
+                }
+                else {
+                    if (_currentPlayer) {
+                        _currentPlayer.play();
+                    }
+                }
                 this.pause = function () {
                     if (_currentPlayer) {
+
                         if (!_currentPlayer.paused) {
                             _currentPlayer.pause();
                         }
