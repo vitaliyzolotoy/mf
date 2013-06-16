@@ -23,7 +23,7 @@ var plugin = new function () {
                     text: feeds,
                     data: {
                         title: '',
-                        html: '<div class="list"><div class="list__title">' + feeds.join('</div><div class="list__item">') + '</li></div>'
+                        html: '<div class="list"><div class="list__title"><i class="icon icon-rss"></i>' + feeds.join('</div><div class="list__item">') + '</li></div>'
                     }
                 });
             });
