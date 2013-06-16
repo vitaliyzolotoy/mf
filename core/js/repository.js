@@ -22,6 +22,7 @@
             item = { 
                 useVoice: true,
                 enabledPlugins: ['weather', 'horoscope', 'calendar', 'rss']
+                // enabledPlugins: ['calendar', 'weather', 'horoscope', 'calendar', 'rss']
             };
         }
         return item;

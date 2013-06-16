@@ -8,15 +8,15 @@ var calendar = new function () {
     var self = this;
 
     this.init = function(){
-        moment.lang('ru');
+        // moment.lang('ru');
 
-        // load calendar events with including script
-        $(function(){
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=morningFriendInsertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true';
-            $('head').append(script);
-        });
+        // // load calendar events with including script
+        // $(function(){
+        //     var script = document.createElement('script');
+        //     script.type = 'text/javascript';
+        //     script.src = 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=morningFriendInsertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true';
+        //     $('head').append(script);
+        // });
     },
 
     this.getName = function() {
@@ -26,22 +26,22 @@ var calendar = new function () {
         return 'Календарь';
     },
     this.processData = function(response){
-        var events = [];
-        $(response.feed.entry).each(function(key, event) {
-            events.push(event.title.$t + ' ' + moment().calendar())
-        });
+        // var events = [];
+        // $(response.feed.entry).each(function(key, event) {
+        //     events.push(event.title.$t + ' ' + moment().calendar())
+        // });
 
-        self.ready({
-            text: ['Календарь', 'Прогон презентации Морнинг Френд', 'Завтра о 12:20' ,'Еще одно событие', 'В понедельнык в 7:35'],
-            data: {
-                title: 'Календарь',
-                html: '<ul><li>'+events.join('</li><li>')+'</li></ul>'
-            }
-        });
     },
 
     this.getData = function(ready) {
-        self.ready = ready;
+        ready({
+            text: ['Ближайшие события', 'Прогон презентации Морнинг Френд', 'Сегодня в 12:20', 'Оформить документы по коммандировке', '13:15', 'Встреча с колегами', 'Сегодня в 14:26', 'Начало презентаций', '17:25', 'Ужин с друзьями', '20:32'],
+            data: {
+                title: 'Календарь',
+                html: '<div class="plugin-calendar"><div>Прогон презентации Морнинг Френд - Сегодня о 12:20</div><div>Оформить документы по коммандировке – 13:15</div><div>Встреча с колегами – Сегодня в 14:26</div><div>Начало презентаций – 17:25</div><div>Ужин с друзьями – 20:32</div></div>'
+            }
+        });
+
     }
 };
 
