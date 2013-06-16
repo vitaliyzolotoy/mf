@@ -22,8 +22,8 @@ var plugin = new function () {
                 ready({
                     text: self.transalate(weather),
                     data: {
-                        title: 'Погода',
-                        html: '...'
+                        title: '',
+                        html: '<div class="plugin-icon"><i class="icon-big icon-sun"></i></div>'
                     }
                 });
             });

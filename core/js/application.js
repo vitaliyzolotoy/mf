@@ -349,9 +349,8 @@
                 }
             };
             this.stop = function () {
-                $('audio').remove();
                 if (_currentPlayer) {
-                    _currentPlayer.remove();
+                    $(_currentPlayer).remove();
                 }
             }
         }

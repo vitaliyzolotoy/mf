@@ -154,10 +154,6 @@ body
 {
     font-size: 120px;
     
-    display: block !important;
-    
-    margin: 0 auto 20px auto;
-    
     line-height: 120px !important;
 }
 
@@ -233,6 +229,12 @@ body
 
     vertical-align: top;
     white-space: normal;
+}
+
+.plugin-icon
+{
+    margin: 0 0 20px 0;
+    text-align: center;
 }
 
 .time
