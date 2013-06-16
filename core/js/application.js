@@ -88,7 +88,6 @@
                         onCompleted();
                     }
                 }
-
                 var $timeCounterWrapper = $('<div class="time" />');
                 var $hours = $('<span class="time__hours" />');
                 var $minutes = $('<span class="time__minutes" />');
@@ -109,7 +108,7 @@
                     var $alarmContentWrapper = $('<div class="alarm" />');
                     var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
                     var $alarmTimeLabel = $('<div class="alarm__timer">'+(currentHours<=9 ? '0' + currentHours : currentHours)+':'+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes)+'</div>');
-                    var alarmTimerCounter = 0;
+					var alarmTimerCounter = 0;
                     if (timeUpdateInterval)
                     {
                         clearInterval(timeUpdateInterval);
@@ -122,15 +121,14 @@
                             alarmTimerCounter++;
                             $('.alarm__timer').text((currentHours<=9 ? '0' + currentHours : currentHours)+ (alarmTimerCounter%2==0 ? ' ' : ':')+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes));
                         }
-                    }, 2000);
-                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
-                    $alarmButtonStop.click(function(){
+                    }, 2000);                    var $alarmButtonStop = $('<button class="button button_type_stop">Остановить</button>');
+                    $alarmButtonStop.click(function () {
                         _ctx.UI.audioPlayer.stop();
                         onCompleted();
                         // console.log('clicked stop');
                     });
                     var $alarmButtonYet = $('<button class="button">Еще 5 минут :-)</button>');
-                    $alarmButtonYet.click(function(){
+                    $alarmButtonYet.click(function () {
                         _ctx.UI.audioPlayer.stop();
                         //onCompleted()
                         var t = new Date();
@@ -168,7 +166,20 @@
             $pluginsContainerWrapper.append($pluginsContainer);
             var cachedPluginContents = [];
             var $currentPluginContent;
+            var _currentPluginName;
             $contentWrapper.html($pluginsContainerWrapper);
+            var $horoscopeCrumb = $('.horoCrumb').click(function () {
+                executePlugin('horoscope', _settings.pluginSettings.useVoice, function () { });
+            });
+            var $weatherCrumb = $('.weatherCrumb').click(function () {
+                executePlugin('weather', _settings.pluginSettings.useVoice, function () { });
+            });
+            var $calendarCrumb = $('.calendarCrumb').click(function () {
+                executePlugin('calendar', _settings.pluginSettings.useVoice, function () { });
+            });
+            var $rssCrumb = $('.rssCrumb').click(function () {
+                executePlugin('rss', _settings.pluginSettings.useVoice, function () { });
+            });
             //private functions 
             function executePluginByIndex(index) {
                 if (index < enabled.length) {
@@ -184,8 +195,11 @@
                 }
             }
             function executePlugin(pluginName, useVoice, onExecuted) {
+                if (pluginName == _currentPluginName) {
+                    return;
+                }
                 $mainWrapper.attr('id', pluginName);
-
+                _currentPluginName = pluginName;
                 function executePluginContent(pluginData, readableName, text) {
                     var $pluginContentWrapper = $('<div class="plugin-content"></div>');
                     var $pluginContentTitle = $('<div class="plugin-content"></div>');
@@ -239,7 +253,6 @@
                 }
                 var pluginContent = getCachedContent(pluginName);
                 if (pluginContent) {
-
                     displayPluginContent(pluginContent.$content, pluginContent.data, pluginContent.readableName, pluginContent.text);
                 }
                 else {
@@ -264,7 +277,6 @@
                         //get plugin data object
                         setAppTitle(plugin.getReadableName());
                         plugin.getData(function (data) {
-
                             executePluginContent(data.data, plugin.getReadableName(), data.text);
                         });
                     }
@@ -311,9 +323,9 @@
                 $('<audio/>', {
                     src: source,
                     autoplay: 'autoplay'
-                }).appendTo('body').bind('ended', function(){
-                        onCompleted();
-                    });
+                }).appendTo('body').bind('ended', function () {
+                    onCompleted();
+                });
             };
             this.pause = function () {
                 if (_currentPlayer) {
