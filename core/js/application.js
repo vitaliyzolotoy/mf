@@ -32,6 +32,19 @@
         var $appTitle = $('.actions__title');
         //start application
 
+        $('.actions__left .icon:first').click(function(){
+            if ($('audio').size())
+            {
+                var audio = $('audio').get(0);
+                if (audio.paused) {
+                    audio.play();
+                    $(this).addClass('icon-pause').removeClass('icon-play');
+                } else {
+                    audio.pause();
+                    $(this).addClass('icon-play').removeClass('icon-pause');
+                }
+            }
+        });
         //---Alarm
         function setAppTitle(text) {
             $appTitle.text(text);
@@ -102,7 +115,7 @@
                         clearInterval(timeUpdateInterval);
                     }
                     timeUpdateInterval = setInterval(function(){
-                        if ($('.alarm__timer'))
+                        if ($('.alarm__timer').size())
                         {
                             var currentHours = new Date().getHours();
                             var currentMinutes = new Date().getMinutes();
