@@ -32,6 +32,17 @@
         var $appTitle = $('.actions__title');
         //start application
 
+        $('.actions__left .icon:first').click(function(){
+            if ($('audio').size())
+            {
+                var audio = $('audio').get(0);
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
+        });
         //---Alarm
         function setAppTitle(text) {
             $appTitle.text(text);
