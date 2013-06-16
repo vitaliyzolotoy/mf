@@ -86,6 +86,7 @@
                 }, 1000);
                 displayTimeCounterStep();
             }
+            var timeUpdateInterval;
             function playMusic(music, onCompleted) {
                 if (music) {
                     // console.log(music);
@@ -95,7 +96,11 @@
                     var $alarmDateLabel = $('<div class="alarm__date">Воскресение, 16 июня</div>');
                     var $alarmTimeLabel = $('<div class="alarm__timer">'+(currentHours<=9 ? '0' + currentHours : currentHours)+':'+(currentMinutes<=9 ? '0' + currentMinutes : currentMinutes)+'</div>');
                     var alarmTimerCounter = 0;
-                    setInterval(function(){
+                    if (timeUpdateInterval)
+                    {
+                        clearInterval(timeUpdateInterval);
+                    }
+                    timeUpdateInterval = setInterval(function(){
                         if ($('.alarm__timer'))
                         {
                             var currentHours = new Date().getHours();
