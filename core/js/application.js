@@ -114,7 +114,7 @@
                         clearInterval(timeUpdateInterval);
                     }
                     timeUpdateInterval = setInterval(function(){
-                        if ($('.alarm__timer'))
+                        if ($('.alarm__timer').size())
                         {
                             var currentHours = new Date().getHours();
                             var currentMinutes = new Date().getMinutes();
