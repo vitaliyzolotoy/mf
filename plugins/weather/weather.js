@@ -21,10 +21,10 @@ var plugin = new function () {
             self.getWeather(latitude, longitude, function(weather, icon){
                 weather = self.transalate(weather);
                 ready({
-                    text: weather,
+                    text: ['Погода на сегодня', weather],
                     data: {
                         title: '',
-                        html: '<div class="plugin-icon"><i class="i-weather '+icon+'"></i></div><div class="weather">'+weather+'</div'
+                        html: '<div class="plugin-icon"><i class="i-weather '+icon+'"></i></div><div class="weather">'+weather+'</div>'
                     }
                 });
             });
