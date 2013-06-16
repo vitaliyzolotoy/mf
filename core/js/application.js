@@ -299,7 +299,7 @@
         }
         function endPluginsExecuting() {
             $mainWrapper.attr('id', 'end');
-            $contentWrapper.html('end');
+            $contentWrapper.html('');
         }
 
         if (_settings.alarmSettings.enableAlarm) {
